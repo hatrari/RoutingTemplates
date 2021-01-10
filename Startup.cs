@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -42,7 +43,8 @@ namespace RoutingTemplates
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapGet("test", context => context.Response.WriteAsync("Hi, from GET verb!"));
+                endpoints.MapPost("test", context => context.Response.WriteAsync("Hi, from POST verb!"));
             });
         }
     }
